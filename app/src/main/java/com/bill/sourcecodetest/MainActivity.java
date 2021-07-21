@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bill.sourcecodetest.eventbus.EventBusActivity;
 import com.bill.sourcecodetest.okhttp.OkHttpActivity;
 import com.bill.sourcecodetest.retrofit.RetrofitActivity;
 
@@ -24,5 +25,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void handleRetrofit(View view) {
         startActivity(new Intent(this, RetrofitActivity.class));
+    }
+
+    public void handleEventBus(View view) {
+        startActivity(new Intent(this, EventBusActivity.class));
     }
 }
