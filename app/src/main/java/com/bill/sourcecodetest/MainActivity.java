@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bill.sourcecodetest.cp.ProviderActivity;
 import com.bill.sourcecodetest.eventbus.EventBusActivity;
 import com.bill.sourcecodetest.okhttp.OkHttpActivity;
 import com.bill.sourcecodetest.retrofit.RetrofitActivity;
@@ -29,5 +30,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void handleEventBus(View view) {
         startActivity(new Intent(this, EventBusActivity.class));
+    }
+
+    public void handleProvider(View view) {
+        startActivity(new Intent(this, ProviderActivity.class));
     }
 }
