@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bill.sourcecodetest.aidl.BookManagerActivity;
 import com.bill.sourcecodetest.cp.ProviderActivity;
 import com.bill.sourcecodetest.eventbus.EventBusActivity;
 import com.bill.sourcecodetest.okhttp.OkHttpActivity;
@@ -34,5 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void handleProvider(View view) {
         startActivity(new Intent(this, ProviderActivity.class));
+    }
+
+    public void handleAidl(View view) {
+        startActivity(new Intent(this, BookManagerActivity.class));
     }
 }

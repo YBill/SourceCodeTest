@@ -1,0 +1,29 @@
+客户端为：BookManagerActivity
+服务端为：BookManagerService
+
+1、当 BookManagerService 在当前进程时，即在 AndroidManifest.xml 中 service 不指定 process
+
+通过 IBookManager.Stub.asInterface(iBinder) 获取 IBookManager 时：
+IInterface iin = obj.queryLocalInterface(DESCRIPTOR);
+此时 iin 不为空，直接返回 BookManagerService 对象
+不需要进程间通信
+客户端 BookManagerActivity 和 服务器端 BookManagerService 可以直接通信
+
+
+
+2、当 BookManagerService 不在当前进程时，即在 AndroidManifest.xml 中 service 指定 process
+
+
+通过 IBookManager.Stub.asInterface(iBinder) 获取 IBookManager 时：
+IInterface iin = obj.queryLocalInterface(DESCRIPTOR);
+此时 iin 为空，返回代理对象 Proxy
+此时需要进程间通信
+此时客户端 BookManagerActivity 调用服务器端 BookManagerService 的方法是通过 Proxy
+调用 Proxy 中的方法，然后调用 IBinder.transact，会触发 Stub 的 onTransact
+然后最终由 Stub 的 onTransact 调用服务器端 BookManagerService 中的实现
+
+
+
+总结：
+同进程客户端和服务器通信可以直接通信
+不同进程客户端和服务器通信需要借助Binder来辅助完成，即客户端调用服务器方法实际是调用Proxy中的方法，然后Proxy来调用服务器的方法
